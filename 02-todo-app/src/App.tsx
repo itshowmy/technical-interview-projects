@@ -72,6 +72,20 @@ const App = () => {
     setTodos(newTodos)
   }
 
+  const handleUpdateTitle = ({ id, title }: { id: string, title: string }): void => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          title
+        }
+      }
+      return todo
+    })
+
+    setTodos(newTodos)
+  }
+
   return (
     <div className='todoapp'>
       <Header onAddTodo={handleAddTodo}/>
@@ -79,6 +93,7 @@ const App = () => {
         todos={filteredTodos}
         onRemoveTodos={handleRemove}
         onHandleCompleted={handleCompleted}
+        handleUpdateTitle={handleUpdateTitle}
       />
       <Footer
         activeTodos={activeTodos}
